@@ -4,13 +4,16 @@
   "description": "app to handle http requests",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.12.4",
+    "express": "^4.14.0",
     "morgan": "^1.7.0",
     "uuid": "^2.0.3"
+  },
+  "engines": {
+    "node": "4.4.3"
   },
   "repository": {
     "type": "git",
