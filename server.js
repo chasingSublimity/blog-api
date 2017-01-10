@@ -26,7 +26,7 @@ app.post('/blog-posts', jsonParser, (req, res) => {
 	// ask about let and for loops w/ aysnc code
 	for (let i=0; i < requiredFields.length; i++) {
 		if(!(requiredFields[i] in req.body)) {
-			const msg = 'Missing ${field} in request body';
+			const msg = `Missing ${field} in request body`;
 			console.log(msg);
 			return res.satus(400).send(msg);
 		}
@@ -37,8 +37,34 @@ app.post('/blog-posts', jsonParser, (req, res) => {
 
 app.delete('/blog-posts/:id', (req, res) => {
 	BlogPosts.delete(req.params.id);
-	console.log('Deleting blogpost ${req.params.id}');
+	console.log(`Deleting blogpost ${req.params.id}`);
 	res.status(204).end();
+});
+
+app.put('/blog-posts/:id', jsonParser, (req, res) => {
+	const requiredFields = ['title', 'content', 'author', 'publishDate'];
+	// ask about let and for loops w/ aysnc code
+	for (let i=0; i < requiredFields.length; i++) {
+		if(!(requiredFields[i] in req.body)) {
+			const msg = `Missing ${field} in request body`;
+			console.log(msg);
+			return res.satus(400).send(msg);
+		}
+	}
+	if (req.params.id !== req.body.id) {
+		const msg = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
+		console.error(msg);
+		return res.status(400).send(msg);
+	}
+	console.log(`Updating shopping list item ${req.params.id}`);
+	const updatedItem = BlogPosts.update({
+		id: req.params.id,
+		title: req.body.title,
+		content: req.body.content,
+		author: req.body.author,
+		publishDate: (req.body.publishDate || Date.now())
+	});
+	res.status(204).json(updatedItem);
 });
 
 // app.put('/blog-posts/:id');
@@ -46,3 +72,4 @@ app.delete('/blog-posts/:id', (req, res) => {
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
 });
+
