@@ -15,7 +15,6 @@ app.use(morgan('common'));
 BlogPosts.create('JavaScript and You', 'text1', 'blake sager', null);
 BlogPosts.create('Assembly for Dummies', 'text2', 'blake sager', null);
 BlogPosts.create('Who moved my trackpad?', 'text3', 'blake sager', null);
-BlogPosts.create('Logs. So many logs.', 'text4', 'blake sager', null);
 
 app.get('/blog-posts', (req, res) => {
 	res.json(BlogPosts.get()); 
@@ -36,7 +35,11 @@ app.post('/blog-posts', jsonParser, (req, res) => {
 	res.status(201).json(blogPost);
 });
 
-// app.delete('/blog-posts/:id');
+app.delete('/blog-posts/:id', (req, res) => {
+	BlogPosts.delete(req.params.id);
+	console.log('Deleting blogpost ${req.params.id}');
+	res.status(204).end();
+});
 
 // app.put('/blog-posts/:id');
 
