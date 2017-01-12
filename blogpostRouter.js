@@ -17,10 +17,9 @@ router.get('/', (req, res) => {
 	res.json(BlogPosts.get()); 
 });
 
-// what is jsonParser doing and how?
+// read router documentation
 router.post('/', jsonParser, (req, res) => {
 	const requiredFields = ['title', 'content', 'author', 'publishDate'];
-	// ask about let and for loops w/ aysnc code
 	for (let i=0; i < requiredFields.length; i++) {
 		if(!(requiredFields[i] in req.body)) {
 			const msg = `Missing ${field} in request body`;
@@ -40,7 +39,7 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', jsonParser, (req, res) => {
 	const requiredFields = ['title', 'content', 'author', 'publishDate'];
-	// ask about let and for loops w/ aysnc code
+	// require all params
 	for (let i=0; i < requiredFields.length; i++) {
 		if(!(requiredFields[i] in req.body)) {
 			const msg = `Missing ${field} in request body`;
@@ -48,6 +47,7 @@ router.put('/:id', jsonParser, (req, res) => {
 			return res.satus(400).send(msg);
 		}
 	}
+	// verify that param id matches the body id
 	if (req.params.id !== req.body.id) {
 		const msg = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
 		console.error(msg);
