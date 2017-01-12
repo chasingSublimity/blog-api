@@ -13,14 +13,14 @@ describe('Blog Post API', function() {
 	before(function() {
 	  return runServer();
 	});
-	  after(function() {
-    return closeServer();
-  });
+	after(function() {
+	  return closeServer();
+	});
 
 	// get
 	it('should list blog posts on GET', function() {
 		return chai.request(app)
-		.get('shopping-list')
+		.get('/blog-posts')
 		.then(function(res) {
 			res.should.be.json;
 			res.body.should.be.a('array');

@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-// ask about dependency organization
+
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
@@ -10,6 +10,7 @@ const blogpostRouter = require('./blogpostRouter');
 app.use(morgan('common'));
 
 app.use('/blog-posts', blogpostRouter);
+
 
 let server;
 
@@ -25,6 +26,9 @@ function runServer() {
   });
 }
 
+// like `runServer`, this function also needs to return a promise.
+// `server.close` does not return a promise on its own, so we manually
+// create one.
 function closeServer() {
   return new Promise((resolve, reject) => {
     console.log('Closing server');
@@ -39,8 +43,10 @@ function closeServer() {
   });
 }
 
+// if server.js is called directly (aka, with `node server.js`), this block
+// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+}
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
-});
-
+module.exports = {app, runServer, closeServer};
