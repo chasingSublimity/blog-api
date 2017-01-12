@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: PgNgNZH0cCe/KnJqpSMEYZWRlIHquzLZmURnDbwjfJuHR4JyGYuuB2iipncsspBxSMa9wrbK9AeEeFZI4clJCS7JfjF6jAN/7EvVa1igMs3Q7S8ChbnZrPYWHcdDHy0YsEBWKHUUr2+4w4d0w13X9ZmowV9qiQu6h6mQBzgpsFdxBKD3RTb9n6TiKMFKX4X05vVyxOoT75I6ST1E6b9j2kfAA+COIMa2u8Q/u+/lI/P6MiNWeg+nnkQNtGlW1saf/Zc+QHsaVJL7HhV7vD6+vKXYcJjCHp+9wUDBodbJKwa6kUlmn+kQ2oBLGUsVDZ89U6+y/61nDOlmZGLi/7ZFFHIuM3R+jvt0z2QsFbqODTs4wO+ou068DBHT18KWsQAqO1ntYQJqlfk7buft8WCrdZ0b2QXVnzQoBCiYFIl8woip7cx/7uBtCSWoQLbsxcEArP3go1z+rzwNu12uPYZTf7JRDb7LWxypcxu3xnWIUCHrtln1q4nH5+r2++0CF7/AxZY8tNt6+ZjRuqhw3Nwl36lRekeIUS2eJfzvTDOo1e+oGJFrTm1DhMu3gYVpi0bI83EwgoL77D282kQs33jmJFC/sZNOkPcxSxEysHh/1mUL54euGaKTftK9hDSV3SWkZOPRhxl/0IrmnV5VSTFW3ERlSZ8VE3p6YcktTwpWPDQ=
+  app: dry-beach-28595
+  on:
+    repo: chasingSublimity/blog-api
