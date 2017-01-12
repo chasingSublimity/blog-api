@@ -34,6 +34,21 @@ describe('Blog Post API', function() {
 	});
 
 	// post
+	it('should add an item on POST', function() {
+	  const newItem = {title: 'a', content: 'abc', author: 'Blake Sager', publishDate: false};
+	  return chai.request(app)
+	    .post('/blog-posts')
+	    .send(newItem)
+	    .then(function(res) {
+	      res.should.have.status(201);
+	      res.should.be.json;
+	      res.body.should.be.a('object');
+	      res.body.should.include.keys('id', 'title', 'content', 'author', 'publishDate');
+	      res.body.id.should.not.be.null;
+	      // response should be deep equal to `newItem` from above if we assign
+	      // `id` to it from `res.body.id`
+	    });
+	});
 
 	// put
 
