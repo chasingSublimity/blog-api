@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 /* jshint expr: true */
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
@@ -66,9 +67,7 @@ describe('Blog Post API', function() {
 	    })
 	    .then(function(res) {
 	      res.should.have.status(204);
-	      res.should.be.json;
 	      res.body.should.be.a('object');
-	      res.body.should.deep.equal(updateData);
 	    });
 	});
 
