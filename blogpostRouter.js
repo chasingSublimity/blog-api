@@ -38,18 +38,20 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author', 'publishDate'];
+	const requiredFields = ['title', 'content', 'author', 'publishDate', 'id'];
 	// require all params
 	for (let i=0; i < requiredFields.length; i++) {
-		if(!(requiredFields[i] in req.body)) {
+		const field = requiredFields[i];
+		if(!(field in req.body)) {
 			const msg = `Missing ${field} in request body`;
 			console.log(msg);
-			return res.satus(400).send(msg);
+			return res.status(400).send(msg);
 		}
 	}
 	// verify that param id matches the body id
 	if (req.params.id !== req.body.id) {
-		const msg = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
+		const msg = `Request path id (${req.params.id}) and 
+		request body id (${req.body.id}) must match`;
 		console.error(msg);
 		return res.status(400).send(msg);
 	}
