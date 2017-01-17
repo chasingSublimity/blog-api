@@ -1,17 +1,12 @@
 /* jshint esversion: 6 */
 
 const express = require('express');
-
+const mongoose = require('mongoose');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {BlogPosts} = require('./models');
-
-// sample data to manipulate
-BlogPosts.create('JavaScript and You', 'text1', 'blake sager', null);
-BlogPosts.create('Assembly for Dummies', 'text2', 'blake sager', null);
-BlogPosts.create('Who moved my trackpad?', 'text3', 'blake sager', null);
+const {BlogPost} = require('./models');
 
 router.get('/', (req, res) => {
 	res.json(BlogPosts.get()); 

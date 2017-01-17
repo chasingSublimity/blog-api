@@ -66,6 +66,7 @@ describe('Blog Post API', function() {
 	        .send(updateData);
 	    })
 	    .then(function(res) {
+	    	console.log(res);
 	      res.should.have.status(204);
 	      res.body.should.be.a('object');
 	    });
