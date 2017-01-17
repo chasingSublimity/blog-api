@@ -4,14 +4,15 @@ const mongoose = require('mongoose');
 
 // blog post schema
 const blogPostSchema = mongoose.Schema({
-  title: {type: String, required: true},
-  content: {type: String, required: true},
   author: {
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
+    firstName: String,
+    lastName: String
   },
+  title: {type: String, required: true},
+  content: {type: String},
   created: {type: Date, default: Date.now}
 });
+
 
 blogPostSchema.virtual('authorString').get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();});

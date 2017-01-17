@@ -52,7 +52,7 @@ app.post('/blog-posts', (req, res) => {
   });
   BlogPost
   .create({
-    name: req.body.title,
+    title: req.body.title,
     content: req.body.content,
     author: req.body.author})
   .then(
@@ -81,7 +81,7 @@ app.put('/blog-posts/:id', (req, res) => {
     }
   });
   BlogPost
-  .findbyIdAndUpdate(req.params.id, {$set: toUpdate})
+  .findByIdAndUpdate(req.params.id, {$set: toUpdate})
   .exec()
   .then(updatedPost => res.status(204).json(updatedPost.apiRepr))
   .catch(err => res.status(500).json({message: "Internal Server Error"}));
