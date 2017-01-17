@@ -4,7 +4,7 @@
   "description": "app to handle http requests",
   "main": "server.js",
   "scripts": {
-    "start": "npm server.js",
+    "start": "nodemon server.js",
     "test": "mocha ./test"
   },
   "dependencies": {
