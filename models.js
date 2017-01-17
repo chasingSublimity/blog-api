@@ -9,8 +9,8 @@ const blogPostSchema = mongoose.Schema({
   author: {
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    created: {type: Date, default: Date.now}
-  }
+  },
+  created: {type: Date, default: Date.now}
 });
 
 blogPostSchema.virtual('authorString').get(function() {
@@ -26,4 +26,5 @@ blogPostSchema.methods.apiRepr = function() {
 };
 
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
 module.exports = {BlogPost};
